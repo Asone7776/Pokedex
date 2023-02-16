@@ -47,9 +47,10 @@ extension MainContainerController{
         gradientlayer.startPoint = CGPoint(x: 0, y: 0.5)
         gradientlayer.endPoint = CGPoint(x: 1, y: 0.5)
         upperLayer.frame = view.bounds
-        upperLayer.backgroundColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 0.5).cgColor;
+        upperLayer.backgroundColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 0.8).cgColor;
         view.layer.insertSublayer(gradientlayer, at: 0);
         view.layer.insertSublayer(upperLayer, at: 1);
+     
     }
 }
 
@@ -60,7 +61,6 @@ class DummyController1:UIViewController{
         view.backgroundColor = .white;
         title = "Pokemon";
         navigationController?.navigationBar.isTranslucent = false;
-//                navigationController?.navigationBar.prefersLargeTitles = true;
     }
 }
 

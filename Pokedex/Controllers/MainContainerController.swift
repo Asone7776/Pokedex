@@ -19,7 +19,9 @@ class MainContainerController: UITabBarController {
         let vc1 = UINavigationController(rootViewController: pokemonController);
         let vc2 = UINavigationController(rootViewController: movesController);
         let vc3 = UINavigationController(rootViewController: itemsController);
-        
+        vc1.navigationBar.prefersLargeTitles = true;
+        vc2.navigationBar.prefersLargeTitles = true;
+        vc3.navigationBar.prefersLargeTitles = true;
         vc1.setTabBarImage(imageName: "pokemon", title: "Pokemon", tag: 0);
         vc2.setTabBarImage(imageName: "moves", title: "Moves", tag: 1);
         vc3.setTabBarImage(imageName: "items", title: "Items", tag: 2);

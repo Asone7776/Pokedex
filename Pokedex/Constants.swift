@@ -2,8 +2,7 @@ import UIKit
 
 struct Constants {
     static let appName = "Pokedex";
-    static let PokemonCellIdentifier = "PokemonCell"
- 
+    
     
     struct BrandColors {
         static let purple = "BrandPurple"

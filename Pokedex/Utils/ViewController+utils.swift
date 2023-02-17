@@ -15,11 +15,9 @@ extension UIViewController{
     func setupAppearance(){
         let appearance = UINavigationBarAppearance()
         appearance.shadowColor = .clear
-        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = false;
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.prefersLargeTitles = true;
     }
 }

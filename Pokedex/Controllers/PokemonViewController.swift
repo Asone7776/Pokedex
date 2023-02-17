@@ -54,7 +54,7 @@ extension PokemonViewController{
     }
     func setupTable(){
         view.addSubview(table);
-        table.register(PokemonTableCell.self, forCellReuseIdentifier: Constants.PokemonCellIdentifier);
+        table.register(PokemonTableCell.self, forCellReuseIdentifier: PokemonTableCell.identifier);
         table.delegate = self;
         table.dataSource = self;
         table.backgroundColor = .systemBackground;
@@ -77,7 +77,7 @@ extension PokemonViewController:UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.PokemonCellIdentifier, for: indexPath) as! PokemonTableCell;
+        let cell = tableView.dequeueReusableCell(withIdentifier: PokemonTableCell.identifier, for: indexPath) as! PokemonTableCell;
         let item = pokemons[indexPath.row];
         
         var contentConfiguration = cell.defaultContentConfiguration()

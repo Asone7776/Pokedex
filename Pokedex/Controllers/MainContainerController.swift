@@ -45,7 +45,16 @@ class MainContainerController: UITabBarController {
             self.upperLayer.frame = self.view.bounds;
         }
     }
-    
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews();
+//        view.layoutIfNeeded();
+//    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection);
+//                    self.gradientlayer.frame = self.view.bounds;
+//                    self.upperLayer.frame = self.view.bounds;
+    }
     private func setupTabBar() {
         tabBar.tintColor = .label
         tabBar.isTranslucent = false
@@ -64,7 +73,6 @@ extension MainContainerController{
         upperLayer.backgroundColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 0.3).cgColor;
         view.layer.insertSublayer(gradientlayer, at: 0);
         view.layer.insertSublayer(upperLayer, at: 1);
-     
     }
 }
 

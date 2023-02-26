@@ -10,11 +10,15 @@ import Foundation
 struct PokemonModel {
     let name: String
 }
-struct DreamWorld:Codable {
+struct OfficialArtwork:Codable {
     let front_default: String
 }
 struct Other: Codable {
-    let dream_world: DreamWorld
+    let officialArtwork: OfficialArtwork
+    enum CodingKeys: String, CodingKey {
+          case officialArtwork = "official-artwork"
+      }
+
 }
 struct Sprites: Codable {
     let other: Other

@@ -8,7 +8,6 @@
 import UIKit
 
 class PokemonViewController: UIViewController {
-    let refreshControl = UIRefreshControl();
     var pokemonBrain = PokemonBrain();
     var list: PokemonListModel? = nil;
     
@@ -25,7 +24,6 @@ class PokemonViewController: UIViewController {
         setupNetworking();
         setupTable();
         layout();
-        setupRefreshControl();
     }
 }
 extension PokemonViewController{
@@ -34,14 +32,16 @@ extension PokemonViewController{
         pokemonBrain.fetchPokemonList();
     }
     func layout(){
-        
+
     }
     func setupTable(){
         view.addSubview(table);
         table.register(PokemonTableCell.self, forCellReuseIdentifier: PokemonTableCell.identifier);
+        table.rowHeight = PokemonTableCell.rowHeight;
         table.delegate = self;
         table.dataSource = self;
         table.backgroundColor = .systemBackground;
+        table.allowsSelection = false; //Remove it
         
         NSLayoutConstraint.activate([
             table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -52,11 +52,6 @@ extension PokemonViewController{
     }
     func setupSearchController(){
         
-    }
-    func setupRefreshControl(){
-        //        refreshControl.tintColor = .label;
-        refreshControl.addTarget(self, action: #selector(onRefresh), for: .valueChanged);
-        table.refreshControl = refreshControl;
     }
 }
 
@@ -73,9 +68,7 @@ extension PokemonViewController:UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: PokemonTableCell.identifier, for: indexPath) as! PokemonTableCell;
         if let pokemons = list?.results{
             let item = pokemons[indexPath.row];
-            var contentConfiguration = cell.defaultContentConfiguration()
-            contentConfiguration.text = item.capitalizedName;
-            cell.contentConfiguration = contentConfiguration;
+            cell.configureCell(pokemonModel: item);
         }
         return cell;
     }
@@ -85,15 +78,11 @@ extension PokemonViewController:UITableViewDelegate{
 }
 //MARK: Actions
 extension PokemonViewController{
-    @objc private func onRefresh(){
-        self.pokemonBrain.fetchPokemonList();
-    }
 }
 extension PokemonViewController:PokemonBrainDelegate{
     func onSuccess(list: PokemonListModel) {
         self.list = list;
         self.table.reloadData();
-        self.refreshControl.endRefreshing();
     }
     
     func onFailure(errorMessage: String) {

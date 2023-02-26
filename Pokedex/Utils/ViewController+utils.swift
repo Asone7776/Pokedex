@@ -19,5 +19,15 @@ extension UIViewController{
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        addGradientLines();
+    }
+    func addGradientLines() {
+        let viewWithGradient = GradientView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 4));
+        view.addSubview(viewWithGradient);
+        NSLayoutConstraint.activate([
+            viewWithGradient.topAnchor.constraint(equalTo: view.topAnchor),
+            viewWithGradient.leadingAnchor.constraint(equalTo:view.leadingAnchor),
+            viewWithGradient.trailingAnchor.constraint(equalTo:view.trailingAnchor),
+        ]);
     }
 }

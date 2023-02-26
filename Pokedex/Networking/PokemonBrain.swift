@@ -15,9 +15,12 @@ protocol PokemonBrainDelegate{
 struct PokemonBrain {
     let url = "https://pokeapi.co/api/v2/"
     var delegate: PokemonBrainDelegate?
+    var params:Parameters = [
+     "limit":"20"
+    ]
     func fetchPokemonList(){
         let myGroup = DispatchGroup()
-        AF.request("\(url)/pokemon").validate().responseDecodable(of: PokemonListModel.self) { response in
+        AF.request("\(url)/pokemon",parameters: params).validate().responseDecodable(of: PokemonListModel.self) { response in
             switch response.result {
             case .success(var list):
                 for (index,pokemon) in list.results.enumerated() {

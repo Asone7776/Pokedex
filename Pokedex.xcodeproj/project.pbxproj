@@ -11,6 +11,9 @@
 		CE0DCD98299FF8C4005FD9CE /* PokemonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DCD97299FF8C4005FD9CE /* PokemonModel.swift */; };
 		CE0DCD9C299FF941005FD9CE /* PokemonTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0DCD9B299FF941005FD9CE /* PokemonTableCell.swift */; };
 		CE4E838029A009DC00E44B16 /* PokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4E837F29A009DC00E44B16 /* PokemonViewController.swift */; };
+		CE54AA9729ABD00200838DA0 /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54AA9629ABD00200838DA0 /* TypeView.swift */; };
+		CE54AA9929ABD7DD00838DA0 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54AA9829ABD7DD00838DA0 /* Enums.swift */; };
+		CE54AA9B29ABDF4000838DA0 /* UIStackView+removeAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54AA9A29ABDF4000838DA0 /* UIStackView+removeAll.swift */; };
 		CE5EFB8E29AB801300FC55FD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EFB8D29AB801300FC55FD /* GradientView.swift */; };
 		CE95D87B299ECB23002197BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95D87A299ECB23002197BB /* AppDelegate.swift */; };
 		CE95D87D299ECB23002197BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95D87C299ECB23002197BB /* SceneDelegate.swift */; };
@@ -28,6 +31,9 @@
 		CE0DCD97299FF8C4005FD9CE /* PokemonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonModel.swift; sourceTree = "<group>"; };
 		CE0DCD9B299FF941005FD9CE /* PokemonTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTableCell.swift; sourceTree = "<group>"; };
 		CE4E837F29A009DC00E44B16 /* PokemonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonViewController.swift; sourceTree = "<group>"; };
+		CE54AA9629ABD00200838DA0 /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
+		CE54AA9829ABD7DD00838DA0 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		CE54AA9A29ABDF4000838DA0 /* UIStackView+removeAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+removeAll.swift"; sourceTree = "<group>"; };
 		CE5EFB8D29AB801300FC55FD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		CE95D877299ECB23002197BB /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE95D87A299ECB23002197BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				CE95D891299ECD46002197BB /* ViewController+utils.swift */,
+				CE54AA9829ABD7DD00838DA0 /* Enums.swift */,
+				CE54AA9A29ABDF4000838DA0 /* UIStackView+removeAll.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -108,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5EFB8D29AB801300FC55FD /* GradientView.swift */,
+				CE54AA9629ABD00200838DA0 /* TypeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,13 +298,16 @@
 			files = (
 				CE95D894299EDB71002197BB /* Constants.swift in Sources */,
 				CE4E838029A009DC00E44B16 /* PokemonViewController.swift in Sources */,
+				CE54AA9B29ABDF4000838DA0 /* UIStackView+removeAll.swift in Sources */,
 				CE5EFB8E29AB801300FC55FD /* GradientView.swift in Sources */,
 				CE0DCD9C299FF941005FD9CE /* PokemonTableCell.swift in Sources */,
 				CE95D892299ECD46002197BB /* ViewController+utils.swift in Sources */,
+				CE54AA9729ABD00200838DA0 /* TypeView.swift in Sources */,
 				CEDB1C8C29AA5B9B00CA724A /* PokemonBrain.swift in Sources */,
 				CE95D87F299ECB23002197BB /* MainContainerController.swift in Sources */,
 				CE0DCD98299FF8C4005FD9CE /* PokemonModel.swift in Sources */,
 				CE95D87B299ECB23002197BB /* AppDelegate.swift in Sources */,
+				CE54AA9929ABD7DD00838DA0 /* Enums.swift in Sources */,
 				CE95D87D299ECB23002197BB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

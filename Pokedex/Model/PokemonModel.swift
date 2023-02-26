@@ -7,6 +7,26 @@
 
 import Foundation
 
+//MARK: Main Models
+struct Pokemon: Codable{
+    let name: String
+    let url: String?
+    var capitalizedName:String {
+        self.name.capitalized
+    }
+    var sprites: Sprites?
+    var types: [Types]?
+}
+
+struct PokemonListModel: Codable{
+    let count: Int
+    let next: String?
+    let previous: String?
+    var results: [Pokemon]
+}
+
+
+//MARK: Inner Models
 struct PokemonModel {
     let name: String
 }
@@ -18,23 +38,14 @@ struct Other: Codable {
     enum CodingKeys: String, CodingKey {
           case officialArtwork = "official-artwork"
       }
-
+}
+struct SingleType:Codable {
+    let name: String
+}
+struct Types: Codable{
+    let type: SingleType
 }
 struct Sprites: Codable {
     let other: Other
 }
-struct Pokemon: Codable{
-    let name: String
-    let url: String?
-    var capitalizedName:String {
-        self.name.capitalized
-    }
-    var sprites: Sprites?
-}
 
-struct PokemonListModel: Codable{
-    let count: Int
-    let next: String?
-    let previous: String?
-    var results: [Pokemon]
-}

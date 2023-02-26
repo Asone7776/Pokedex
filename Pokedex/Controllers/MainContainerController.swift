@@ -28,8 +28,6 @@ class MainContainerController: UITabBarController {
         viewControllers = [vc1,vc2,vc3];
         setupTabBar();
         setGradientBackground();
-        let gradient = GradientView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 4));
-        tabBar.addSubview(gradient)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
@@ -43,8 +41,10 @@ class MainContainerController: UITabBarController {
     }
     
     private func setupTabBar() {
-        tabBar.tintColor = .label
-        tabBar.isTranslucent = false
+        let gradient = GradientView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 4));
+        tabBar.addSubview(gradient);
+        tabBar.tintColor = .label;
+        tabBar.isTranslucent = false;
     }
 }
 

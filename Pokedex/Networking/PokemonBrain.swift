@@ -34,6 +34,9 @@ struct PokemonBrain {
                             if let sprites = pokemon.sprites{
                                 list.results[index].sprites = sprites;
                             }
+                            if let types = pokemon.types{
+                                list.results[index].types = types;
+                            }
                         case .failure(let error):
                             print(error.localizedDescription);
                         }

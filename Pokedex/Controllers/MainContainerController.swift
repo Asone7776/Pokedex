@@ -12,8 +12,8 @@ class MainContainerController: UITabBarController {
     var gradientlayer = CAGradientLayer()
     var upperLayer = CALayer();
     let pokemonController = PokemonViewController();
-    let movesController = DummyController2();
-    let itemsController = DummyController3();
+    let movesController = MoveViewController();
+    let itemsController = ItemViewController();
     override func viewDidLoad() {
         super.viewDidLoad()
         let vc1 = UINavigationController(rootViewController: pokemonController);
@@ -60,22 +60,5 @@ extension MainContainerController{
         upperLayer.backgroundColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 0.3).cgColor;
         view.layer.insertSublayer(gradientlayer, at: 0);
         view.layer.insertSublayer(upperLayer, at: 1);
-    }
-}
-
-class DummyController2:UIViewController{
-    override func viewDidLoad() {
-        super.viewDidLoad();
-        view.backgroundColor = .green;
-        title = "Moves";
-    }
-}
-
-
-class DummyController3:UIViewController{
-    override func viewDidLoad() {
-        super.viewDidLoad();
-        view.backgroundColor = .orange;
-        title = "Items";
     }
 }

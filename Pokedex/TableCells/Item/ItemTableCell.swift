@@ -1,15 +1,15 @@
 //
-//  PokemonTableCellTableViewCell.swift
+//  ItemTableCell.swift
 //  Pokedex
 //
-//  Created by Arthur Obichkin on 17/02/23.
+//  Created by Arthur Obichkin on 28/02/23.
 //
 
 import UIKit
 import SDWebImage
 
-class PokemonTableCell: UITableViewCell {
-    static let identifier = "PokemonCell";
+class ItemTableCell: UITableViewCell {
+    static let identifier = "ItemCell";
     static let rowHeight: CGFloat = 75;
     
     lazy var pokemonImage: UIImageView = {
@@ -27,12 +27,12 @@ class PokemonTableCell: UITableViewCell {
         return label;
     }();
     
-    let stackView:UIStackView = {
-        let stack = UIStackView();
-        stack.axis = .horizontal;
-        stack.translatesAutoresizingMaskIntoConstraints = false;
-        stack.spacing = 10;
-        return stack;
+    lazy var costLabel: UILabel = {
+        let label = UILabel();
+        label.text = "cost"
+        label.font = .boldSystemFont(ofSize: 15);
+        label.translatesAutoresizingMaskIntoConstraints = false;
+        return label;
     }();
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -44,11 +44,11 @@ class PokemonTableCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
-extension PokemonTableCell{
+extension ItemTableCell{
     func layout(){
         addSubview(pokemonImage);
         addSubview(nameLabel);
-        addSubview(stackView);
+        addSubview(costLabel);
         NSLayoutConstraint.activate([
             pokemonImage.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
             pokemonImage.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -56,27 +56,20 @@ extension PokemonTableCell{
             pokemonImage.heightAnchor.constraint(equalToConstant: 50),
             nameLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: pokemonImage.trailingAnchor, multiplier: 1),
             nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 1),
-            stackView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            trailingAnchor.constraint(equalToSystemSpacingAfter: costLabel.trailingAnchor, multiplier: 2),
+            costLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ]);
     }
-    func configureCell(pokemonModel:Pokemon){
-        stackView.removeAllArrangedSubviews();
-        nameLabel.text = pokemonModel.capitalizedName;
-        if let sprites = pokemonModel.sprites{
-            let imageUrl = URL(string: sprites.other.officialArtwork.front_default);
+    func configureCell(itemModel:Item){
+        nameLabel.text = itemModel.capitalizedName;
+        if let cost = itemModel.cost {
+            costLabel.text = "\(cost)$";
+        }
+        if let sprite = itemModel.sprites{
+            let imageUrl = URL(string: sprite.defaultImage);
             if let url = imageUrl{
                 pokemonImage.sd_imageIndicator = SDWebImageActivityIndicator.gray;
                 pokemonImage.sd_setImage(with: url);
-            }
-        }
-        if let types = pokemonModel.types {
-            if !types.isEmpty{
-                types.forEach { type in
-                    if stackView.subviews.count < 2{
-                        stackView.addArrangedSubview(TypeView(typeName: type.type.name));
-                    }
-                }
             }
         }
     }

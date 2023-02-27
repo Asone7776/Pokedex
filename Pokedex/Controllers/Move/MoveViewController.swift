@@ -8,10 +8,10 @@
 import UIKit
 import UIScrollView_InfiniteScroll
 
-class PokemonViewController: UIViewController {
+class MoveViewController: UIViewController {
     let alerts = Alerts();
     var pokemonBrain = PokemonBrain();
-    var list: PokemonListModel? = nil;
+    var list: MoveListModel? = nil;
     
     lazy var table: UITableView = {
         let table = UITableView(frame: UIScreen.main.bounds, style: .plain);
@@ -21,16 +21,16 @@ class PokemonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Pokemon";
+        title = "Moves";
         view.backgroundColor = .systemBackground;
         setupNetworking();
         setupTable();
     }
 }
-extension PokemonViewController{
+extension MoveViewController{
     func setupNetworking(){
-        pokemonBrain.fetchPokemonList(url: nil) {list in
-            self.onSuccess(newPokemonsData: list);
+        pokemonBrain.fetchMovesList(url: nil) {list in
+            self.onSuccess(newMovesData: list);
         }completeWithError: { error in
             self.alerts.showErrorAlert(message: error) { alert in
                 self.present(alert,animated: true);
@@ -39,8 +39,8 @@ extension PokemonViewController{
     }
     func setupTable(){
         view.addSubview(table);
-        table.register(PokemonTableCell.self, forCellReuseIdentifier: PokemonTableCell.identifier);
-        table.rowHeight = PokemonTableCell.rowHeight;
+        table.register(MoveTableCell.self, forCellReuseIdentifier: MoveTableCell.identifier);
+        table.rowHeight = MoveTableCell.rowHeight;
         table.delegate = self;
         table.dataSource = self;
         table.backgroundColor = .systemBackground;
@@ -59,7 +59,7 @@ extension PokemonViewController{
     }
 }
 
-extension PokemonViewController:UITableViewDataSource{
+extension MoveViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let pokemons =  list?.results{
             return pokemons.count;
@@ -69,46 +69,46 @@ extension PokemonViewController:UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PokemonTableCell.identifier, for: indexPath) as! PokemonTableCell;
+        let cell = tableView.dequeueReusableCell(withIdentifier: MoveTableCell.identifier, for: indexPath) as! MoveTableCell;
         cell.animateBackground();
-        if let pokemons = list?.results{
-            let item = pokemons[indexPath.row];
-            cell.configureCell(pokemonModel: item);
+        if let moves = list?.results{
+            let item = moves[indexPath.row];
+            cell.configureCell(moveModel: item);
         }
         return cell;
     }
 }
-extension PokemonViewController:UITableViewDelegate{
+extension MoveViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
-        let vc = SinglePokemonViewController();
-        navigationController?.pushViewController(vc, animated: true)
     }
+    
 }
+
 //MARK: Actions
-extension PokemonViewController{
+extension MoveViewController{
     func loadMore(_ table:UITableView){
         guard let list = list , let next = list.next else{
             table.finishInfiniteScroll();
             return;
         }
-        pokemonBrain.fetchPokemonList(url: next) { list in
-            self.onSuccess(newPokemonsData: list);
+        pokemonBrain.fetchMovesList(url: next) { list in
+            self.onSuccess(newMovesData: list);
         }completeWithError: { error in
             self.alerts.showErrorAlert(message: error) { alert in
                 self.present(alert,animated: true);
             }
         }
     }
-    func onSuccess(newPokemonsData: PokemonListModel) {
+    func onSuccess(newMovesData: MoveListModel) {
         if var safeList = list{
-            safeList.count = newPokemonsData.count;
-            safeList.next = newPokemonsData.next;
-            safeList.previous = newPokemonsData.previous;
-            safeList.results = safeList.results + newPokemonsData.results;
+            safeList.count = newMovesData.count;
+            safeList.next = newMovesData.next;
+            safeList.previous = newMovesData.previous;
+            safeList.results = safeList.results + newMovesData.results;
             list = safeList;
         }else{
-            list = newPokemonsData;
+            list = newMovesData;
         }
         self.table.reloadData();
         table.finishInfiniteScroll();

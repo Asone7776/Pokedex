@@ -15,6 +15,14 @@
 		CE54AA9729ABD00200838DA0 /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54AA9629ABD00200838DA0 /* TypeView.swift */; };
 		CE54AA9B29ABDF4000838DA0 /* UIStackView+removeAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54AA9A29ABDF4000838DA0 /* UIStackView+removeAll.swift */; };
 		CE5EFB8E29AB801300FC55FD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EFB8D29AB801300FC55FD /* GradientView.swift */; };
+		CE848FD829AD26FF00BBBE25 /* MoveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848FD729AD26FF00BBBE25 /* MoveModel.swift */; };
+		CE848FDA29AD31CC00BBBE25 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848FD929AD31CC00BBBE25 /* Alerts.swift */; };
+		CE848FDC29AD37AA00BBBE25 /* MoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848FDB29AD37AA00BBBE25 /* MoveViewController.swift */; };
+		CE848FDF29AD38B600BBBE25 /* MoveTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848FDE29AD38B600BBBE25 /* MoveTableCell.swift */; };
+		CE848FE129AD3F6800BBBE25 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848FE029AD3F6800BBBE25 /* ItemModel.swift */; };
+		CE848FE429AD40E000BBBE25 /* ItemTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848FE329AD40E000BBBE25 /* ItemTableCell.swift */; };
+		CE848FE629AD422D00BBBE25 /* UITableCell+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848FE529AD422D00BBBE25 /* UITableCell+Utils.swift */; };
+		CE848FE929AD429E00BBBE25 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848FE829AD429E00BBBE25 /* ItemViewController.swift */; };
 		CE95D87B299ECB23002197BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95D87A299ECB23002197BB /* AppDelegate.swift */; };
 		CE95D87D299ECB23002197BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95D87C299ECB23002197BB /* SceneDelegate.swift */; };
 		CE95D87F299ECB23002197BB /* MainContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95D87E299ECB23002197BB /* MainContainerController.swift */; };
@@ -35,6 +43,14 @@
 		CE54AA9629ABD00200838DA0 /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
 		CE54AA9A29ABDF4000838DA0 /* UIStackView+removeAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+removeAll.swift"; sourceTree = "<group>"; };
 		CE5EFB8D29AB801300FC55FD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		CE848FD729AD26FF00BBBE25 /* MoveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveModel.swift; sourceTree = "<group>"; };
+		CE848FD929AD31CC00BBBE25 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		CE848FDB29AD37AA00BBBE25 /* MoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveViewController.swift; sourceTree = "<group>"; };
+		CE848FDE29AD38B600BBBE25 /* MoveTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveTableCell.swift; sourceTree = "<group>"; };
+		CE848FE029AD3F6800BBBE25 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
+		CE848FE329AD40E000BBBE25 /* ItemTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableCell.swift; sourceTree = "<group>"; };
+		CE848FE529AD422D00BBBE25 /* UITableCell+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableCell+Utils.swift"; sourceTree = "<group>"; };
+		CE848FE829AD429E00BBBE25 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		CE95D877299ECB23002197BB /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE95D87A299ECB23002197BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE95D87C299ECB23002197BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				CE0DCD97299FF8C4005FD9CE /* PokemonModel.swift */,
+				CE848FD729AD26FF00BBBE25 /* MoveModel.swift */,
+				CE848FE029AD3F6800BBBE25 /* ItemModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -89,6 +107,8 @@
 		CE4E838529A015F500E44B16 /* TableCells */ = {
 			isa = PBXGroup;
 			children = (
+				CE848FE229AD40D000BBBE25 /* Item */,
+				CE848FDD29AD38A400BBBE25 /* Move */,
 				CE4E838729A0160C00E44B16 /* Pokemon */,
 			);
 			path = TableCells;
@@ -107,6 +127,8 @@
 			children = (
 				CE95D891299ECD46002197BB /* ViewController+utils.swift */,
 				CE54AA9A29ABDF4000838DA0 /* UIStackView+removeAll.swift */,
+				CE848FD929AD31CC00BBBE25 /* Alerts.swift */,
+				CE848FE529AD422D00BBBE25 /* UITableCell+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -114,6 +136,8 @@
 		CE4E838A29A0165000E44B16 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE848FE729AD429000BBBE25 /* Items */,
+				CE848FD629AD0E9500BBBE25 /* Move */,
 				CE27E99929ACBEF300759A27 /* Pokemon */,
 				CE95D87E299ECB23002197BB /* MainContainerController.swift */,
 			);
@@ -127,6 +151,38 @@
 				CE54AA9629ABD00200838DA0 /* TypeView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CE848FD629AD0E9500BBBE25 /* Move */ = {
+			isa = PBXGroup;
+			children = (
+				CE848FDB29AD37AA00BBBE25 /* MoveViewController.swift */,
+			);
+			path = Move;
+			sourceTree = "<group>";
+		};
+		CE848FDD29AD38A400BBBE25 /* Move */ = {
+			isa = PBXGroup;
+			children = (
+				CE848FDE29AD38B600BBBE25 /* MoveTableCell.swift */,
+			);
+			path = Move;
+			sourceTree = "<group>";
+		};
+		CE848FE229AD40D000BBBE25 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				CE848FE329AD40E000BBBE25 /* ItemTableCell.swift */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		CE848FE729AD429000BBBE25 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				CE848FE829AD429E00BBBE25 /* ItemViewController.swift */,
+			);
+			path = Items;
 			sourceTree = "<group>";
 		};
 		CE95D86E299ECB23002197BB = {
@@ -305,16 +361,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE95D894299EDB71002197BB /* Constants.swift in Sources */,
+				CE848FDA29AD31CC00BBBE25 /* Alerts.swift in Sources */,
 				CE4E838029A009DC00E44B16 /* PokemonViewController.swift in Sources */,
 				CE54AA9B29ABDF4000838DA0 /* UIStackView+removeAll.swift in Sources */,
+				CE848FE429AD40E000BBBE25 /* ItemTableCell.swift in Sources */,
 				CE5EFB8E29AB801300FC55FD /* GradientView.swift in Sources */,
+				CE848FDF29AD38B600BBBE25 /* MoveTableCell.swift in Sources */,
 				CE0DCD9C299FF941005FD9CE /* PokemonTableCell.swift in Sources */,
+				CE848FE629AD422D00BBBE25 /* UITableCell+Utils.swift in Sources */,
 				CE27E99B29ACBF1300759A27 /* SinglePokemonViewController.swift in Sources */,
+				CE848FD829AD26FF00BBBE25 /* MoveModel.swift in Sources */,
 				CE95D892299ECD46002197BB /* ViewController+utils.swift in Sources */,
 				CE54AA9729ABD00200838DA0 /* TypeView.swift in Sources */,
 				CEDB1C8C29AA5B9B00CA724A /* PokemonBrain.swift in Sources */,
+				CE848FE929AD429E00BBBE25 /* ItemViewController.swift in Sources */,
+				CE848FE129AD3F6800BBBE25 /* ItemModel.swift in Sources */,
 				CE95D87F299ECB23002197BB /* MainContainerController.swift in Sources */,
 				CE0DCD98299FF8C4005FD9CE /* PokemonModel.swift in Sources */,
+				CE848FDC29AD37AA00BBBE25 /* MoveViewController.swift in Sources */,
 				CE95D87B299ECB23002197BB /* AppDelegate.swift in Sources */,
 				CE95D87D299ECB23002197BB /* SceneDelegate.swift in Sources */,
 			);

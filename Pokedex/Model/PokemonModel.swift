@@ -8,7 +8,7 @@
 import Foundation
 
 //MARK: Main Models
-struct Pokemon: Codable{
+struct Pokemon: Decodable{
     let name: String
     let url: String?
     var capitalizedName:String {
@@ -18,7 +18,7 @@ struct Pokemon: Codable{
     var types: [Types]?
 }
 
-struct PokemonListModel: Codable{
+struct PokemonListModel: Decodable{
     var count: Int
     var next: String?
     var previous: String?
@@ -30,7 +30,7 @@ struct PokemonListModel: Codable{
 struct PokemonModel {
     let name: String
 }
-struct OfficialArtwork:Codable {
+struct OfficialArtwork: Codable {
     let front_default: String
 }
 struct Other: Codable {
@@ -39,13 +39,13 @@ struct Other: Codable {
           case officialArtwork = "official-artwork"
       }
 }
-struct SingleType:Codable {
+struct SingleType: Decodable {
     let name: String
 }
-struct Types: Codable{
+struct Types: Decodable{
     let type: SingleType
 }
-struct Sprites: Codable {
+struct Sprites: Decodable {
     let other: Other
 }
 

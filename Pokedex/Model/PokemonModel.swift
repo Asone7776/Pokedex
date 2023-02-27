@@ -19,9 +19,9 @@ struct Pokemon: Codable{
 }
 
 struct PokemonListModel: Codable{
-    let count: Int
-    let next: String?
-    let previous: String?
+    var count: Int
+    var next: String?
+    var previous: String?
     var results: [Pokemon]
 }
 

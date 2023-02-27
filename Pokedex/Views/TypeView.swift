@@ -33,6 +33,7 @@ class TypeView: UIView {
 }
 
 extension TypeView {
+    
     func style() {
         translatesAutoresizingMaskIntoConstraints = false
     }
@@ -45,8 +46,5 @@ extension TypeView {
             trailingAnchor.constraint(equalTo: image.trailingAnchor),
             bottomAnchor.constraint(equalTo: image.bottomAnchor)
         ]);
-    }
-    func configureImage(imageName: String){
-        
     }
 }

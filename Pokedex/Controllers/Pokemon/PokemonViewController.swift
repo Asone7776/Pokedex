@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import UIScrollView_InfiniteScroll
 
 class PokemonViewController: UIViewController {
+     
     var pokemonBrain = PokemonBrain();
     var list: PokemonListModel? = nil;
     
-    lazy var table:UITableView = {
+    lazy var table: UITableView = {
         let table = UITableView(frame: UIScreen.main.bounds, style: .plain);
         table.translatesAutoresizingMaskIntoConstraints = false;
         return table;
@@ -29,7 +31,7 @@ class PokemonViewController: UIViewController {
 extension PokemonViewController{
     func setupNetworking(){
         pokemonBrain.delegate = self;
-        pokemonBrain.fetchPokemonList();
+        pokemonBrain.fetchPokemonList(url: nil);
     }
     func layout(){
 
@@ -41,7 +43,8 @@ extension PokemonViewController{
         table.delegate = self;
         table.dataSource = self;
         table.backgroundColor = .systemBackground;
-        table.allowsSelection = false; //Remove it
+        table.infiniteScrollDirection = .vertical;
+        table.addInfiniteScroll(handler: loadMore(_:))
         
         NSLayoutConstraint.activate([
             table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -66,6 +69,7 @@ extension PokemonViewController:UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PokemonTableCell.identifier, for: indexPath) as! PokemonTableCell;
+        cell.animateBackground();
         if let pokemons = list?.results{
             let item = pokemons[indexPath.row];
             cell.configureCell(pokemonModel: item);
@@ -74,15 +78,35 @@ extension PokemonViewController:UITableViewDataSource{
     }
 }
 extension PokemonViewController:UITableViewDelegate{
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true);
+        let vc = SinglePokemonViewController();
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 //MARK: Actions
 extension PokemonViewController{
+    func loadMore(_ table:UITableView){
+        guard let list = list , let next = list.next else{
+            table.finishInfiniteScroll();
+            return;
+        }
+        pokemonBrain.fetchPokemonList(url: next);
+    }
 }
 extension PokemonViewController:PokemonBrainDelegate{
-    func onSuccess(list: PokemonListModel) {
-        self.list = list;
+    func onSuccess(newPokemonsData: PokemonListModel) {
+        if var safeList = list{
+            safeList.count = newPokemonsData.count;
+            safeList.next = newPokemonsData.next;
+            safeList.previous = newPokemonsData.previous;
+            safeList.results = safeList.results + newPokemonsData.results;
+            list = safeList;
+        }else{
+            list = newPokemonsData;
+        }
         self.table.reloadData();
+        table.finishInfiniteScroll();
     }
     
     func onFailure(errorMessage: String) {

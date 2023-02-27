@@ -80,4 +80,9 @@ extension PokemonTableCell{
             }
         }
     }
+    func animateBackground(){
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor(red: 0.33, green: 0.62, blue: 0.87, alpha: 1.00);
+        self.selectedBackgroundView = backgroundView;
+    }
 }

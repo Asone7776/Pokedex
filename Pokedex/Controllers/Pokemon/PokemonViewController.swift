@@ -54,9 +54,7 @@ extension PokemonViewController{
             table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]);
     }
-    func setupSearchController(){
-        
-    }
+
 }
 
 extension PokemonViewController:UITableViewDataSource{
@@ -82,7 +80,8 @@ extension PokemonViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
         let vc = SinglePokemonViewController();
-        navigationController?.pushViewController(vc, animated: true)
+        vc.modalPresentationStyle = .fullScreen;
+        navigationController?.present(vc, animated: true)
     }
 }
 //MARK: Actions

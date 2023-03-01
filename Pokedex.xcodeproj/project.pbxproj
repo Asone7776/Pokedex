@@ -15,6 +15,7 @@
 		CE54AA9729ABD00200838DA0 /* TypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54AA9629ABD00200838DA0 /* TypeView.swift */; };
 		CE54AA9B29ABDF4000838DA0 /* UIStackView+removeAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54AA9A29ABDF4000838DA0 /* UIStackView+removeAll.swift */; };
 		CE5EFB8E29AB801300FC55FD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EFB8D29AB801300FC55FD /* GradientView.swift */; };
+		CE72085929AFBC22003C424C /* SinglePokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72085829AFBC22003C424C /* SinglePokemonCell.swift */; };
 		CE848FD829AD26FF00BBBE25 /* MoveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848FD729AD26FF00BBBE25 /* MoveModel.swift */; };
 		CE848FDA29AD31CC00BBBE25 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848FD929AD31CC00BBBE25 /* Alerts.swift */; };
 		CE848FDC29AD37AA00BBBE25 /* MoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848FDB29AD37AA00BBBE25 /* MoveViewController.swift */; };
@@ -30,6 +31,7 @@
 		CE95D887299ECB25002197BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE95D885299ECB25002197BB /* LaunchScreen.storyboard */; };
 		CE95D892299ECD46002197BB /* ViewController+utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95D891299ECD46002197BB /* ViewController+utils.swift */; };
 		CE95D894299EDB71002197BB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE95D893299EDB71002197BB /* Constants.swift */; };
+		CEBF949729AEA254006D802F /* SinglePokemonHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF949629AEA254006D802F /* SinglePokemonHeader.swift */; };
 		CEDB1C8C29AA5B9B00CA724A /* PokemonBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDB1C8B29AA5B9B00CA724A /* PokemonBrain.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,7 @@
 		CE54AA9629ABD00200838DA0 /* TypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeView.swift; sourceTree = "<group>"; };
 		CE54AA9A29ABDF4000838DA0 /* UIStackView+removeAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+removeAll.swift"; sourceTree = "<group>"; };
 		CE5EFB8D29AB801300FC55FD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		CE72085829AFBC22003C424C /* SinglePokemonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePokemonCell.swift; sourceTree = "<group>"; };
 		CE848FD729AD26FF00BBBE25 /* MoveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveModel.swift; sourceTree = "<group>"; };
 		CE848FD929AD31CC00BBBE25 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		CE848FDB29AD37AA00BBBE25 /* MoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 		CE95D888299ECB25002197BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE95D891299ECD46002197BB /* ViewController+utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+utils.swift"; sourceTree = "<group>"; };
 		CE95D893299EDB71002197BB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CEBF949629AEA254006D802F /* SinglePokemonHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePokemonHeader.swift; sourceTree = "<group>"; };
 		CEDB1C8B29AA5B9B00CA724A /* PokemonBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonBrain.swift; sourceTree = "<group>"; };
 		D1E3826598EC9A332DAB01F5 /* Pods-Pokedex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokedex.debug.xcconfig"; path = "Target Support Files/Pods-Pokedex/Pods-Pokedex.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +121,7 @@
 		CE4E838729A0160C00E44B16 /* Pokemon */ = {
 			isa = PBXGroup;
 			children = (
+				CE72085729AFBB8A003C424C /* Single */,
 				CE0DCD9B299FF941005FD9CE /* PokemonTableCell.swift */,
 			);
 			path = Pokemon;
@@ -147,10 +152,19 @@
 		CE5EFB8C29AB800800FC55FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CEBF949529AEA249006D802F /* Pokemon */,
 				CE5EFB8D29AB801300FC55FD /* GradientView.swift */,
 				CE54AA9629ABD00200838DA0 /* TypeView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		CE72085729AFBB8A003C424C /* Single */ = {
+			isa = PBXGroup;
+			children = (
+				CE72085829AFBC22003C424C /* SinglePokemonCell.swift */,
+			);
+			path = Single;
 			sourceTree = "<group>";
 		};
 		CE848FD629AD0E9500BBBE25 /* Move */ = {
@@ -228,6 +242,14 @@
 				CE95D888299ECB25002197BB /* Info.plist */,
 			);
 			name = Files;
+			sourceTree = "<group>";
+		};
+		CEBF949529AEA249006D802F /* Pokemon */ = {
+			isa = PBXGroup;
+			children = (
+				CEBF949629AEA254006D802F /* SinglePokemonHeader.swift */,
+			);
+			path = Pokemon;
 			sourceTree = "<group>";
 		};
 		CEDB1C8A29AA5B7400CA724A /* Networking */ = {
@@ -366,6 +388,7 @@
 				CE54AA9B29ABDF4000838DA0 /* UIStackView+removeAll.swift in Sources */,
 				CE848FE429AD40E000BBBE25 /* ItemTableCell.swift in Sources */,
 				CE5EFB8E29AB801300FC55FD /* GradientView.swift in Sources */,
+				CEBF949729AEA254006D802F /* SinglePokemonHeader.swift in Sources */,
 				CE848FDF29AD38B600BBBE25 /* MoveTableCell.swift in Sources */,
 				CE0DCD9C299FF941005FD9CE /* PokemonTableCell.swift in Sources */,
 				CE848FE629AD422D00BBBE25 /* UITableCell+Utils.swift in Sources */,
@@ -375,6 +398,7 @@
 				CE54AA9729ABD00200838DA0 /* TypeView.swift in Sources */,
 				CEDB1C8C29AA5B9B00CA724A /* PokemonBrain.swift in Sources */,
 				CE848FE929AD429E00BBBE25 /* ItemViewController.swift in Sources */,
+				CE72085929AFBC22003C424C /* SinglePokemonCell.swift in Sources */,
 				CE848FE129AD3F6800BBBE25 /* ItemModel.swift in Sources */,
 				CE95D87F299ECB23002197BB /* MainContainerController.swift in Sources */,
 				CE0DCD98299FF8C4005FD9CE /* PokemonModel.swift in Sources */,

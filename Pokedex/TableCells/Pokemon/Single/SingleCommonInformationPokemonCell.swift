@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SinglePokemonCell: UITableViewCell {
+class SingleCommonInformationPokemonCell: UITableViewCell {
     static let identifier = "topSinglePokemonCell";
     let stackView: UIStackView = {
         let stack = UIStackView();
@@ -23,7 +23,8 @@ class SinglePokemonCell: UITableViewCell {
         view.font = UIFont(name: "Avenir", size: 40);
         view.textAlignment = .center;
         view.text = "Squirtle";
-        view.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1.00);
+//        view.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1.00);
+        view.textColor = .label;
         return view;
     }();
     
@@ -46,6 +47,7 @@ class SinglePokemonCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier);
+        backgroundColor = .systemBackground;
         layout();
     }
 
@@ -54,7 +56,7 @@ class SinglePokemonCell: UITableViewCell {
     }
 }
 
-extension SinglePokemonCell {
+extension SingleCommonInformationPokemonCell {
     func layout() {
         stackView.addArrangedSubview(label);
         stackView.addArrangedSubview(type);

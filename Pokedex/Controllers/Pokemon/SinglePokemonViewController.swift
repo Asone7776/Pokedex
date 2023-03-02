@@ -77,7 +77,7 @@ extension SinglePokemonViewController{
         topTableConstrain?.isActive = true;
     }
     func registerCustomCells(){
-        table.register(SinglePokemonCell.self, forCellReuseIdentifier: SinglePokemonCell.identifier);
+        table.register(SingleCommonInformationPokemonCell.self, forCellReuseIdentifier: SingleCommonInformationPokemonCell.identifier);
     }
 }
 //MARK: Actions
@@ -95,7 +95,7 @@ extension SinglePokemonViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = indexPath.row;
         if index == 0{
-            return SinglePokemonCell(style: .default, reuseIdentifier: SinglePokemonCell.identifier);
+            return SingleCommonInformationPokemonCell(style: .default, reuseIdentifier: SingleCommonInformationPokemonCell.identifier);
         }else{
             let cell = UITableViewCell();
             cell.backgroundColor = .clear

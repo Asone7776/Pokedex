@@ -32,6 +32,13 @@ struct PokemonBrain {
                             if let types = pokemon.types{
                                 list.results[index].types = types;
                             }
+                            if let stats = pokemon.stats{
+                                var statsWithIndex:[Stats] = [];
+                                for (index,stat) in stats.enumerated() {
+                                    statsWithIndex.append(Stats(index:index,base_stat: stat.base_stat, effort: stat.effort, stat: stat.stat))
+                                }
+                                list.results[index].stats = statsWithIndex;
+                            }
                         case .failure(let error):
                             completeWithError(error.localizedDescription);
                         }

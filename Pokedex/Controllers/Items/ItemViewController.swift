@@ -29,13 +29,14 @@ class ItemViewController: UIViewController {
 }
 extension ItemViewController{
     func setupNetworking(){
+        self.showHUD();
         pokemonBrain.fetchItemsList(url: nil) {list in
             self.onSuccess(newItemsData: list);
         }completeWithError: { error in
-            print(error);
-//            self.alerts.showErrorAlert(message: error) { alert in
-//                self.present(alert,animated: true);
-//            }
+            self.hideHUD();
+            self.alerts.showErrorAlert(message: error) { alert in
+                self.present(alert,animated: true);
+            }
         }
     }
     func setupTable(){
@@ -113,5 +114,6 @@ extension ItemViewController{
         }
         self.table.reloadData();
         table.finishInfiniteScroll();
+        self.hideHUD();
     }
 }

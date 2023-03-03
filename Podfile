@@ -9,4 +9,5 @@ pod 'SDWebImage', '~> 5.0'
 pod 'Alamofire'
 pod 'UIScrollView-InfiniteScroll', '~> 1.3.0'
 pod 'Charts'
+pod "KRProgressHUD"
 end

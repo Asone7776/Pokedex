@@ -29,9 +29,11 @@ class MoveViewController: UIViewController {
 }
 extension MoveViewController{
     func setupNetworking(){
+        self.showHUD();
         pokemonBrain.fetchMovesList(url: nil) {list in
             self.onSuccess(newMovesData: list);
         }completeWithError: { error in
+            self.hideHUD();
             self.alerts.showErrorAlert(message: error) { alert in
                 self.present(alert,animated: true);
             }
@@ -112,5 +114,6 @@ extension MoveViewController{
         }
         self.table.reloadData();
         table.finishInfiniteScroll();
+        self.hideHUD();
     }
 }

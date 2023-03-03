@@ -29,9 +29,11 @@ class PokemonViewController: UIViewController {
 }
 extension PokemonViewController{
     func setupNetworking(){
+        self.showHUD();
         pokemonBrain.fetchPokemonList(url: nil) {list in
             self.onSuccess(newPokemonsData: list);
         }completeWithError: { error in
+            self.hideHUD();
             self.alerts.showErrorAlert(message: error) { alert in
                 self.present(alert,animated: true);
             }
@@ -111,5 +113,6 @@ extension PokemonViewController{
         }
         self.table.reloadData();
         table.finishInfiniteScroll();
+        self.hideHUD();
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KRProgressHUD
 
 extension UIViewController{
     func setTabBarImage(imageName:String,title:String,tag:Int){
@@ -29,5 +30,11 @@ extension UIViewController{
             viewWithGradient.leadingAnchor.constraint(equalTo:view.leadingAnchor),
             viewWithGradient.trailingAnchor.constraint(equalTo:view.trailingAnchor),
         ]);
+    }
+    func showHUD(){
+        KRProgressHUD.show(withMessage: "Loading...")
+    }
+    func hideHUD(){
+        KRProgressHUD.dismiss();
     }
 }

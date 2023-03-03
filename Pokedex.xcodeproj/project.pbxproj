@@ -16,7 +16,6 @@
 		CE54AA9B29ABDF4000838DA0 /* UIStackView+removeAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54AA9A29ABDF4000838DA0 /* UIStackView+removeAll.swift */; };
 		CE5EFB8E29AB801300FC55FD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5EFB8D29AB801300FC55FD /* GradientView.swift */; };
 		CE5FF7E429B128FA002B10AE /* SinglePokemonCharacteristicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FF7E329B128FA002B10AE /* SinglePokemonCharacteristicsCell.swift */; };
-		CE5FF7E729B1298F002B10AE /* HorizontalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FF7E629B1298F002B10AE /* HorizontalChartView.swift */; };
 		CE5FF7E929B1306C002B10AE /* DummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FF7E829B1306C002B10AE /* DummyViewController.swift */; };
 		CE72085929AFBC22003C424C /* SingleCommonInformationPokemonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72085829AFBC22003C424C /* SingleCommonInformationPokemonCell.swift */; };
 		CE848FD829AD26FF00BBBE25 /* MoveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE848FD729AD26FF00BBBE25 /* MoveModel.swift */; };
@@ -49,7 +48,6 @@
 		CE54AA9A29ABDF4000838DA0 /* UIStackView+removeAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+removeAll.swift"; sourceTree = "<group>"; };
 		CE5EFB8D29AB801300FC55FD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		CE5FF7E329B128FA002B10AE /* SinglePokemonCharacteristicsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePokemonCharacteristicsCell.swift; sourceTree = "<group>"; };
-		CE5FF7E629B1298F002B10AE /* HorizontalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalChartView.swift; sourceTree = "<group>"; };
 		CE5FF7E829B1306C002B10AE /* DummyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyViewController.swift; sourceTree = "<group>"; };
 		CE72085829AFBC22003C424C /* SingleCommonInformationPokemonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCommonInformationPokemonCell.swift; sourceTree = "<group>"; };
 		CE848FD729AD26FF00BBBE25 /* MoveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveModel.swift; sourceTree = "<group>"; };
@@ -158,21 +156,12 @@
 		CE5EFB8C29AB800800FC55FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CE5FF7E529B12950002B10AE /* Charts */,
 				CEBF949529AEA249006D802F /* Pokemon */,
 				CE5EFB8D29AB801300FC55FD /* GradientView.swift */,
 				CE54AA9629ABD00200838DA0 /* TypeView.swift */,
 				CE5FF7E829B1306C002B10AE /* DummyViewController.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		CE5FF7E529B12950002B10AE /* Charts */ = {
-			isa = PBXGroup;
-			children = (
-				CE5FF7E629B1298F002B10AE /* HorizontalChartView.swift */,
-			);
-			path = Charts;
 			sourceTree = "<group>";
 		};
 		CE72085729AFBB8A003C424C /* Single */ = {
@@ -405,7 +394,6 @@
 				CE4E838029A009DC00E44B16 /* PokemonViewController.swift in Sources */,
 				CE54AA9B29ABDF4000838DA0 /* UIStackView+removeAll.swift in Sources */,
 				CE848FE429AD40E000BBBE25 /* ItemTableCell.swift in Sources */,
-				CE5FF7E729B1298F002B10AE /* HorizontalChartView.swift in Sources */,
 				CE5EFB8E29AB801300FC55FD /* GradientView.swift in Sources */,
 				CEBF949729AEA254006D802F /* SinglePokemonHeader.swift in Sources */,
 				CE848FDF29AD38B600BBBE25 /* MoveTableCell.swift in Sources */,

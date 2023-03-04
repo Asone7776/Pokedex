@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene);
-//        window?.rootViewController = SinglePokemonViewController();
-        window?.rootViewController = mainController;
+        window?.rootViewController = SinglePokemonViewController();
+//        window?.rootViewController = mainController;
         window?.backgroundColor = .systemBackground;
         window?.makeKeyAndVisible();
     }

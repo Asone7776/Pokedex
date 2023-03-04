@@ -10,4 +10,5 @@ pod 'Alamofire'
 pod 'UIScrollView-InfiniteScroll', '~> 1.3.0'
 pod 'Charts'
 pod "KRProgressHUD"
+pod 'BetterSegmentedControl', '~> 2.0'
 end

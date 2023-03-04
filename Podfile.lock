@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.6.4)
+  - BetterSegmentedControl (2.0.1)
   - Charts (4.1.0):
     - Charts/Core (= 4.1.0)
   - Charts/Core (4.1.0):
@@ -15,6 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - BetterSegmentedControl (~> 2.0)
   - Charts
   - KRProgressHUD
   - SDWebImage (~> 5.0)
@@ -23,6 +25,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - BetterSegmentedControl
     - Charts
     - KRActivityIndicatorView
     - KRProgressHUD
@@ -32,6 +35,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  BetterSegmentedControl: 09607b27861d49cbce48b7673b74f9150a3d371a
   Charts: 354f86803d11d9c35de280587fef50d1af063978
   KRActivityIndicatorView: ad69e89c4ce40c986cf580595be4829dcad0e35a
   KRProgressHUD: a248f0bc6c9c2aed40a37b76e03ffecc7f85c887
@@ -39,6 +43,6 @@ SPEC CHECKSUMS:
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   UIScrollView-InfiniteScroll: a30af3dec185edd26d6ad50c521aa277f3ebf177
 
-PODFILE CHECKSUM: a11dcd8bbf21e9cadebfe6197ce376fbe9a55cc9
+PODFILE CHECKSUM: 071799da2a98e2ad79eb48a8f4b49a68a9794c2a
 
 COCOAPODS: 1.11.3

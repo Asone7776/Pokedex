@@ -34,6 +34,8 @@ class SinglePokemonViewController: UIViewController {
         table.separatorStyle = .none;
         table.showsVerticalScrollIndicator = false;
         table.allowsSelection = false;
+//        table.rowHeight = UITableView.automaticDimension
+//        table.estimatedRowHeight = 50
         return table;
     }();
     lazy var backButton:UIButton = {
@@ -79,6 +81,7 @@ extension SinglePokemonViewController{
     func registerCustomCells(){
         table.register(SingleCommonInformationPokemonCell.self, forCellReuseIdentifier: SingleCommonInformationPokemonCell.identifier);
         table.register(SinglePokemonCharacteristicsCell.self, forCellReuseIdentifier: SinglePokemonCharacteristicsCell.identifier);
+        table.register(SinglePokemonAbilitiesCell.self, forCellReuseIdentifier: SinglePokemonAbilitiesCell.identifier);
     }
 }
 //MARK: Actions
@@ -100,6 +103,9 @@ extension SinglePokemonViewController:UITableViewDataSource{
         }
         else if index == 1{
             return SinglePokemonCharacteristicsCell(style: .default, reuseIdentifier: SinglePokemonCharacteristicsCell.identifier);
+        }
+        else if index == 2{
+            return SinglePokemonAbilitiesCell(style: .default, reuseIdentifier: SinglePokemonAbilitiesCell.identifier);
         }
         else{
             let cell = UITableViewCell();

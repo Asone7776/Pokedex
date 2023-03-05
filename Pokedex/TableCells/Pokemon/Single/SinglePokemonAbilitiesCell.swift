@@ -31,16 +31,18 @@ class SinglePokemonAbilitiesCell: UITableViewCell {
         
     let navigationSegmentedControl = BetterSegmentedControl(
         frame: CGRect(x: 0, y: 0, width: UIView.noIntrinsicMetric, height: 30.0),
-        segments: LabelSegment.segments(withTitles: ["STATS", "EVOLUTUONS", "MOVES"],
-                                        normalTextColor: .lightGray,
+        segments: LabelSegment.segments(withTitles: ["STATS", "EVOLUTIONS", "MOVES"],
+                                        normalTextColor: UIColor(red: 0.33, green: 0.62, blue: 0.87, alpha: 1.00),
                                         selectedTextColor: .white),
         options:[.backgroundColor(.clear),
-                 .indicatorViewBackgroundColor(UIColor(red: 0.36, green: 0.38, blue: 0.87, alpha: 1.00)),
-                 .cornerRadius(3.0),
-                 .animationSpringDamping(1.0)])
+                 .indicatorViewBackgroundColor(UIColor(red: 0.33, green: 0.62, blue: 0.87, alpha: 1.00)),
+                 .cornerRadius(15.0),
+                 .animationSpringDamping(1.0)
+        ])
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier);
+//MARK: Important
         contentView.isUserInteractionEnabled = true
         navigationSegmentedControl.translatesAutoresizingMaskIntoConstraints = false;
         navigationSegmentedControl.addTarget(self, action: #selector(navigationSegmentedControlValueChanged(_:)), for: .valueChanged)
@@ -61,6 +63,21 @@ extension SinglePokemonAbilitiesCell{
         stackView.addArrangedSubview(AbilityView(title: "Torrents", text: "Powers up Water-type moves when the Pokémon is in trouble."));
         stackView.addArrangedSubview(Separator());
         stackView.addArrangedSubview(AbilityView(title: "Rain dish", text: "The Pokémon gradually regains HP in rain."))
+//        stackView.addArrangedSubview(AbilityView(title: "Torrents", text: "Powers up Water-type moves when the Pokémon is in trouble."));
+//        stackView.addArrangedSubview(Separator());
+//        stackView.addArrangedSubview(AbilityView(title: "Rain dish", text: "The Pokémon gradually regains HP in rain."))
+//        stackView.addArrangedSubview(AbilityView(title: "Torrents", text: "Powers up Water-type moves when the Pokémon is in trouble."));
+//        stackView.addArrangedSubview(Separator());
+//        stackView.addArrangedSubview(AbilityView(title: "Rain dish", text: "The Pokémon gradually regains HP in rain."))
+//        stackView.addArrangedSubview(AbilityView(title: "Torrents", text: "Powers up Water-type moves when the Pokémon is in trouble."));
+//        stackView.addArrangedSubview(Separator());
+//        stackView.addArrangedSubview(AbilityView(title: "Rain dish", text: "The Pokémon gradually regains HP in rain."))
+//        stackView.addArrangedSubview(AbilityView(title: "Torrents", text: "Powers up Water-type moves when the Pokémon is in trouble."));
+//        stackView.addArrangedSubview(Separator());
+//        stackView.addArrangedSubview(AbilityView(title: "Rain dish", text: "The Pokémon gradually regains HP in rain."))
+//        stackView.addArrangedSubview(AbilityView(title: "Torrents", text: "Powers up Water-type moves when the Pokémon is in trouble."));
+//        stackView.addArrangedSubview(Separator());
+//        stackView.addArrangedSubview(AbilityView(title: "Rain dish", text: "The Pokémon gradually regains HP in rain."))
         addSubview(stackView);
         NSLayoutConstraint.activate([
             navigationSegmentedControl.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),

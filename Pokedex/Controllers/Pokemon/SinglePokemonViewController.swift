@@ -80,8 +80,7 @@ extension SinglePokemonViewController{
     }
     func registerCustomCells(){
         table.register(SingleCommonInformationPokemonCell.self, forCellReuseIdentifier: SingleCommonInformationPokemonCell.identifier);
-        table.register(SinglePokemonCharacteristicsCell.self, forCellReuseIdentifier: SinglePokemonCharacteristicsCell.identifier);
-        table.register(SinglePokemonAbilitiesCell.self, forCellReuseIdentifier: SinglePokemonAbilitiesCell.identifier);
+        table.register(SinglePokemonSegmentsCell.self, forCellReuseIdentifier: SinglePokemonSegmentsCell.identifier);
     }
 }
 //MARK: Actions
@@ -93,7 +92,7 @@ extension SinglePokemonViewController{
 //MARK: Table Data source
 extension SinglePokemonViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3;
+        return 2;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,10 +101,7 @@ extension SinglePokemonViewController:UITableViewDataSource{
             return SingleCommonInformationPokemonCell(style: .default, reuseIdentifier: SingleCommonInformationPokemonCell.identifier);
         }
         else if index == 1{
-            return SinglePokemonCharacteristicsCell(style: .default, reuseIdentifier: SinglePokemonCharacteristicsCell.identifier);
-        }
-        else if index == 2{
-            return SinglePokemonAbilitiesCell(style: .default, reuseIdentifier: SinglePokemonAbilitiesCell.identifier);
+            return SinglePokemonSegmentsCell(style: .default, reuseIdentifier: SinglePokemonSegmentsCell.identifier);
         }
         else{
             let cell = UITableViewCell();

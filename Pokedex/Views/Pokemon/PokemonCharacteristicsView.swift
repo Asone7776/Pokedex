@@ -1,15 +1,13 @@
 //
-//  SinglePokemonCharacteristicsCell.swift
+//  PokemonCharacteristicsView.swift
 //  Pokedex
 //
-//  Created by Arthur Obichkin on 02/03/23.
+//  Created by Arthur Obichkin on 07/03/23.
 //
 
 import UIKit
 import Charts
-
-class SinglePokemonCharacteristicsCell: UITableViewCell {
-    static let identifier = "characteristicsId"
+class PokemonCharacteristicsView: UIView {
     let chartView = HorizontalBarChartView();
     
     var items: [Stats] = [
@@ -20,9 +18,9 @@ class SinglePokemonCharacteristicsCell: UITableViewCell {
         Stats(index:4,base_stat: 30, effort: 0, stat: Stat(name: "SDEF")),
         Stats(index:5,base_stat: 20, effort: 0, stat: Stat(name: "SPD"))
     ]
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier);
-        backgroundColor = .systemBackground
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         layout();
         setupChart();
         setupData();
@@ -31,8 +29,13 @@ class SinglePokemonCharacteristicsCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 200, height: 200)
+    }
 }
-extension SinglePokemonCharacteristicsCell{
+
+extension PokemonCharacteristicsView {
     private func setupChart(){
         chartView.translatesAutoresizingMaskIntoConstraints = false;
         chartView.drawBarShadowEnabled = true
@@ -72,7 +75,6 @@ extension SinglePokemonCharacteristicsCell{
         data.barWidth = barWidth
         chartView.data = data
     }
-
     private func layout(){
         addSubview(chartView);
         NSLayoutConstraint.activate([

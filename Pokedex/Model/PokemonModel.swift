@@ -16,7 +16,9 @@ struct Pokemon: Decodable{
     }
     var sprites: Sprites?
     var types: [Types]?
-    var stats:[Stats]?
+    var stats: [Stats]?
+    var abilities: [Ability]?
+    var species: Species?
 }
 
 struct PokemonListModel: Decodable{
@@ -51,6 +53,14 @@ struct Sprites: Decodable {
     let other: Other
 }
 
+struct Ability: Decodable {
+    let ability: SingleAbility
+}
+struct SingleAbility:Decodable{
+    let name: String
+    let url: String
+}
+
 struct Stats:Decodable{
     var index:Int?
     let base_stat:Int
@@ -66,4 +76,12 @@ struct Stat:Decodable{
     var capitalizedName: String {
         name.capitalized
     }
+}
+
+struct Species: Decodable{
+    let url:String?
+    let flavor_text_entries: [FlavorTextEntries]?
+}
+struct FlavorTextEntries:Decodable{
+    let flavor_text: String
 }

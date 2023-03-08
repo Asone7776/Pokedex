@@ -11,6 +11,8 @@ class SinglePokemonViewController: UIViewController {
     let initialTopEdge: CGFloat = 180;
     let modifiedTopEdge: CGFloat = 50;
     var topTableConstrain:NSLayoutConstraint?;
+    
+    var singlePokemon:Pokemon?;
 
     let bottomLayer:UIView = {
         let view = UIView();
@@ -23,7 +25,6 @@ class SinglePokemonViewController: UIViewController {
     }();
     lazy var table:UITableView = {
         let table = UITableView(frame: .zero, style: .grouped);
-        table.translatesAutoresizingMaskIntoConstraints = false;
         table.delegate = self;
         table.dataSource = self;
         table.clipsToBounds = true;
@@ -98,7 +99,7 @@ extension SinglePokemonViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = indexPath.row;
         if index == 0{
-            return SingleCommonInformationPokemonCell(style: .default, reuseIdentifier: SingleCommonInformationPokemonCell.identifier);
+            return SingleCommonInformationPokemonCell(style: .default, reuseIdentifier: SingleCommonInformationPokemonCell.identifier,title: singlePokemon?.capitalizedName,types: singlePokemon?.types);
         }
         else if index == 1{
             return SinglePokemonSegmentsCell(style: .default, reuseIdentifier: SinglePokemonSegmentsCell.identifier);
@@ -113,7 +114,7 @@ extension SinglePokemonViewController:UITableViewDataSource{
         }
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return SinglePokemonHeader();
+        return SinglePokemonHeader(frame: .zero, sprites: singlePokemon?.sprites);
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 200;

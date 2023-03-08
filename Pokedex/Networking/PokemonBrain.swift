@@ -12,7 +12,7 @@ struct PokemonBrain {
     let pokemonUrl = "https://pokeapi.co/api/v2/pokemon?limit=20"
     let movesUrl = "https://pokeapi.co/api/v2/move?limit=20"
     let itemsUrl = "https://pokeapi.co/api/v2/item?limit=20"
-
+    
     func fetchPokemonList(url: String?, completion: @escaping (PokemonListModel) -> Void,completeWithError: @escaping (String) -> Void){
         let myGroup = DispatchGroup()
         AF.request(url ?? pokemonUrl).validate().responseDecodable(of: PokemonListModel.self) { response in
@@ -39,6 +39,15 @@ struct PokemonBrain {
                                 }
                                 list.results[index].stats = statsWithIndex;
                             }
+//                            if let species = pokemon.species{
+//                                if let url = species.url{
+//                                    getSpecies(url: url) { result in
+//                                        list.results[index].species = result;
+//                                    } completeWithError: {error in
+//                                        completeWithError(error);
+//                                    }
+//                                }
+//                            }
                         case .failure(let error):
                             completeWithError(error.localizedDescription);
                         }
@@ -112,6 +121,16 @@ struct PokemonBrain {
                 myGroup.notify(queue: .main) {
                     completion(list);
                 }
+            case .failure(let error):
+                completeWithError(error.localizedDescription);
+            }
+        }
+    }
+    private func getSpecies(url:String,completion: @escaping (Species) -> Void,completeWithError: @escaping (String) -> Void){
+        AF.request(url).validate().responseDecodable(of: Species.self) {response in
+            switch response.result {
+            case .success(let species):
+                completion(species);
             case .failure(let error):
                 completeWithError(error.localizedDescription);
             }

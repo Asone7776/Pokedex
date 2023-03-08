@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene);
 //        window?.rootViewController = SinglePokemonViewController();
         window?.rootViewController = mainController;
-        window?.backgroundColor = .systemBackground;
+//        window?.backgroundColor = .systemBackground;
         window?.makeKeyAndVisible();
     }
 

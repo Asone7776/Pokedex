@@ -82,7 +82,10 @@ extension PokemonViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
         let vc = SinglePokemonViewController();
-        vc.modalPresentationStyle = .fullScreen;
+        if let item = list?.results[indexPath.row] {
+            vc.singlePokemon = item;
+        }
+        vc.modalPresentationStyle = .fullScreen
         navigationController?.present(vc, animated: true)
     }
 }

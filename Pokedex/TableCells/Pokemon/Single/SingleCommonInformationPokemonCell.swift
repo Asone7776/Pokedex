@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SingleCommonInformationPokemonCell: UITableViewCell {
     static let identifier = "topSinglePokemonCell";
@@ -18,19 +19,22 @@ class SingleCommonInformationPokemonCell: UITableViewCell {
         return stack;
     }();
     
+    let typesStack:UIStackView = {
+        let stack = UIStackView();
+        stack.axis = .horizontal;
+        return stack;
+    }();
+    
     let label:UILabel = {
         let view = UILabel();
         view.font = UIFont(name: "Avenir", size: 40);
         view.textAlignment = .center;
-        view.text = "Squirtle";
-//        view.textColor = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1.00);
         view.textColor = .label;
         return view;
     }();
     
     let type: UIImageView = {
         let imageView = UIImageView();
-        imageView.image = UIImage(named: "water-type");
         imageView.contentMode = .scaleAspectFit;
         return imageView;
     }();
@@ -45,8 +49,9 @@ class SingleCommonInformationPokemonCell: UITableViewCell {
         return textView;
     }();
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    init(style: UITableViewCell.CellStyle, reuseIdentifier: String?,title:String?,types: [Types]?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier);
+        configure(title: title,types: types);
         backgroundColor = .systemBackground;
         layout();
     }
@@ -58,8 +63,9 @@ class SingleCommonInformationPokemonCell: UITableViewCell {
 
 extension SingleCommonInformationPokemonCell {
     func layout() {
+ 
         stackView.addArrangedSubview(label);
-        stackView.addArrangedSubview(type);
+        stackView.addArrangedSubview(typesStack);
         stackView.addArrangedSubview(text);
         addSubview(stackView);
         NSLayoutConstraint.activate([
@@ -68,5 +74,15 @@ extension SingleCommonInformationPokemonCell {
             trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 2),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ]);
+    }
+    func configure(title:String?,types:[Types]?){
+        if let title = title{
+            label.text = title;
+        }
+        if let types = types {
+            types.forEach { type in
+                typesStack.addArrangedSubview(TypeView(typeName: "\(type.type.name)-type"));
+            }
+        }
     }
 }

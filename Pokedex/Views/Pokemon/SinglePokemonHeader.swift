@@ -6,18 +6,19 @@
 //
 
 import UIKit
+import SDWebImage
 
 class SinglePokemonHeader: UIView {
     let pokemonImage:UIImageView = {
         let imageView = UIImageView();
         imageView.contentMode = .scaleAspectFit;
-        imageView.image = UIImage(named: "squirtle");
         imageView.translatesAutoresizingMaskIntoConstraints = false;
         return imageView;
     }();
     
-    override init(frame: CGRect) {
+    init(frame: CGRect,sprites: Sprites?) {
         super.init(frame: frame);
+        configureImage(sprites:sprites);
         style();
         layout();
     }
@@ -31,8 +32,6 @@ class SinglePokemonHeader: UIView {
 
 extension SinglePokemonHeader {
     func style() {
-//        translatesAutoresizingMaskIntoConstraints = false
-//        clipsToBounds = true
         layer.cornerRadius = 48
         layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         backgroundColor = .clear;
@@ -43,7 +42,17 @@ extension SinglePokemonHeader {
         NSLayoutConstraint.activate([
             pokemonImage.centerXAnchor.constraint(equalTo: centerXAnchor),
             pokemonImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-//            pokemonImage.widthAnchor.constraint(equalToConstant: 100)
+            pokemonImage.widthAnchor.constraint(equalToConstant: 170),
+            pokemonImage.heightAnchor.constraint(equalToConstant: 170)
         ])
+    }
+    func configureImage(sprites:Sprites?){
+        if let sprite = sprites{
+            let imageUrl = URL(string: sprite.other.officialArtwork.front_default);
+                if let url = imageUrl{
+                    pokemonImage.sd_imageIndicator = SDWebImageActivityIndicator.gray;
+                    pokemonImage.sd_setImage(with: url);
+                }
+        }
     }
 }

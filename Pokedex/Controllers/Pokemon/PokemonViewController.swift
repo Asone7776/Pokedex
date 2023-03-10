@@ -30,6 +30,7 @@ class PokemonViewController: UIViewController {
 extension PokemonViewController{
     func setupNetworking(){
         self.showHUD();
+//        pokemonBrain.test();
         pokemonBrain.fetchPokemonList(url: nil) {list in
             self.onSuccess(newPokemonsData: list);
         }completeWithError: { error in

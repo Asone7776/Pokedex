@@ -6,9 +6,10 @@ target 'Pokedex' do
   use_frameworks!
   # Pods for Pokedex
 pod 'SDWebImage', '~> 5.0'
-pod 'Alamofire'
+pod 'Alamofire', '~> 5.0'
 pod 'UIScrollView-InfiniteScroll', '~> 1.3.0'
 pod 'Charts'
 pod "KRProgressHUD"
 pod 'BetterSegmentedControl', '~> 2.0'
+pod 'PromisedFuture'
 end

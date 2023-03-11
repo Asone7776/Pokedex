@@ -130,9 +130,34 @@ struct PokemonBrain {
             }
         })
     }
-    func test(){
-        performRequest(url: pokemonUrl).execute { (response:Result<PokemonListModel,Error>) in
-            print(response);
+    
+    func fetchList() -> Future<PokemonListModel,Error>{
+        return performRequest(url: pokemonUrl);
+    }
+    func fetchPokemons(list:PokemonListModel)->Future<PokemonListModel,Error>{
+        var copy = list;
+        let myGroup = DispatchGroup();
+        return Future { completion in
+            for (index, pokemon) in list.results.enumerated(){
+                myGroup.enter();
+                guard let url = pokemon.url else{
+                    return;
+                }
+                performRequest(url: url).execute { (result:Pokemon) in
+                    if let sprites = result.sprites{
+                        copy.results[index].sprites = sprites;
+                    }
+                    print(pokemon);
+                    if let types = pokemon.types{
+                        
+                        copy.results[index].types = types;
+                    }
+                    myGroup.leave();
+                }
+            }
+            myGroup.notify(queue: .main){
+                completion(.success(copy));
+            }
         }
     }
 }

@@ -38,8 +38,6 @@ class SpritesView: UIView {
 extension SpritesView {
     func layout() {
         addSubview(label);
-        stackView.addArrangedSubview(SpriteView(frame: .zero, imageName: "squirtle",labelText: "Normal"));
-        stackView.addArrangedSubview(SpriteView(frame: .zero, imageName: "squirtle-shiny",labelText: "Shiny"))
         addSubview(stackView);
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -49,5 +47,14 @@ extension SpritesView {
             trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             bottomAnchor.constraint(equalTo: stackView.bottomAnchor)
         ]);
+    }
+    func configureSprites(selectedColor:UIColor?,sprites: Sprites?){
+        if let selectedColor = selectedColor{
+            label.textColor = selectedColor;
+        }
+        if let sprites = sprites{
+            stackView.addArrangedSubview(SpriteView(frame: .zero,labelText: "Normal",imageUrl: sprites.other.officialArtwork.front_default,selectedColor: selectedColor));
+            stackView.addArrangedSubview(SpriteView(frame: .zero,labelText: "Shiny",imageUrl: sprites.other.officialArtwork.front_shiny,selectedColor: selectedColor))
+        }
     }
 }

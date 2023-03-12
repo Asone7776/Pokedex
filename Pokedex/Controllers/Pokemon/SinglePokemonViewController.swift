@@ -11,9 +11,28 @@ class SinglePokemonViewController: UIViewController {
     let initialTopEdge: CGFloat = 180;
     let modifiedTopEdge: CGFloat = 50;
     var topTableConstrain:NSLayoutConstraint?;
+    var brain = PokemonBrain();
+    var commonCell = SingleCommonInformationPokemonCell(style: .default, reuseIdentifier: SingleCommonInformationPokemonCell.identifier);
+    var segmentCell = SinglePokemonSegmentsCell(style: .default, reuseIdentifier: SinglePokemonSegmentsCell.identifier);
+    var selectedColor:UIColor?{
+        didSet{
+            view.backgroundColor = selectedColor
+        }
+    }
     
-    var singlePokemon:Pokemon?;
-
+    var singlePokemon:Pokemon?{
+        didSet{
+            if let pokemon = singlePokemon{
+                prepareSelectedColor(types: pokemon.types);
+                self.commonCell.configure(title: self.singlePokemon?.capitalizedName, types: self.singlePokemon?.types);
+                self.segmentCell.configure(selectedColor: selectedColor,stats: pokemon.stats,sprites:singlePokemon?.sprites);
+                if let species = pokemon.species,let abilities = pokemon.abilities{
+                    getData(speciesUrl: species.url,abilities:abilities);
+                }
+            }
+        }
+    }
+    
     let bottomLayer:UIView = {
         let view = UIView();
         view.backgroundColor = .systemBackground
@@ -35,8 +54,8 @@ class SinglePokemonViewController: UIViewController {
         table.separatorStyle = .none;
         table.showsVerticalScrollIndicator = false;
         table.allowsSelection = false;
-//        table.rowHeight = UITableView.automaticDimension
-//        table.estimatedRowHeight = 50
+        //        table.rowHeight = UITableView.automaticDimension
+        //        table.estimatedRowHeight = 50
         return table;
     }();
     lazy var backButton:UIButton = {
@@ -99,10 +118,10 @@ extension SinglePokemonViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let index = indexPath.row;
         if index == 0{
-            return SingleCommonInformationPokemonCell(style: .default, reuseIdentifier: SingleCommonInformationPokemonCell.identifier,title: singlePokemon?.capitalizedName,types: singlePokemon?.types);
+            return commonCell;
         }
         else if index == 1{
-            return SinglePokemonSegmentsCell(style: .default, reuseIdentifier: SinglePokemonSegmentsCell.identifier);
+            return segmentCell;
         }
         else{
             let cell = UITableViewCell();
@@ -127,5 +146,38 @@ extension SinglePokemonViewController:UITableViewDelegate{
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.topTableConstrain?.constant = max(self.initialTopEdge - scrollView.contentOffset.y, self.modifiedTopEdge)
         self.view.layoutIfNeeded();
+    }
+}
+
+extension SinglePokemonViewController{
+    func getData(speciesUrl:String,abilities:[Ability]){
+        self.showHUD();
+        let dispatchGroup = DispatchGroup();
+        dispatchGroup.enter();
+        brain.getSpecies(url: speciesUrl).execute { result in
+            switch result{
+            case .success(let species):
+                self.commonCell.configureText(species: species);
+            case.failure(let error):
+                print(error.localizedDescription);
+            }
+            dispatchGroup.leave();
+        }
+        dispatchGroup.enter();
+        brain.getAbilities(abilities: abilities).execute { result in
+            self.segmentCell.configureAbilites(abilities: result);
+            dispatchGroup.leave();
+        }
+        dispatchGroup.notify(queue: .main){
+            self.table.reloadData();
+            self.hideHUD();
+        }
+    }
+    func prepareSelectedColor(types:[Types]?){
+        if let types = types{
+            if let firstType = types.first{
+                selectedColor = ElementsColor(rawValue: firstType.type.name)?.create;
+            }
+        }
     }
 }

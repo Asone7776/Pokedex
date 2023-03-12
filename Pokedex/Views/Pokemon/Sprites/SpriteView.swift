@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 class SpriteView: UIView {
     
     let label:UILabel = {
@@ -20,16 +20,18 @@ class SpriteView: UIView {
     let pokemonImage:UIImageView = {
         let imageView = UIImageView();
         imageView.contentMode = .scaleAspectFit;
-        imageView.image = UIImage(named: "squirtle");
         imageView.translatesAutoresizingMaskIntoConstraints = false;
         return imageView;
     }();
     
-    init(frame: CGRect,imageName:String,labelText: String = "Sprite") {
+    init(frame: CGRect,labelText: String = "Sprite",imageUrl:String,selectedColor:UIColor?) {
         super.init(frame: frame)
         label.text = labelText;
-        pokemonImage.image = UIImage(named: imageName);
+        configureImage(url: imageUrl);
         layout()
+        if let selectedColor = selectedColor{
+            label.textColor = selectedColor;
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -54,5 +56,12 @@ extension SpriteView {
             pokemonImage.widthAnchor.constraint(equalToConstant: 100),
             pokemonImage.heightAnchor.constraint(equalToConstant: 100)
         ])
+    }
+    func configureImage(url:String){
+        let imageUrl = URL(string: url);
+            if let url = imageUrl{
+                pokemonImage.sd_imageIndicator = SDWebImageActivityIndicator.gray;
+                pokemonImage.sd_setImage(with: url);
+            }
     }
 }

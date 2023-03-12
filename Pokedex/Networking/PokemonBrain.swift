@@ -13,7 +13,7 @@ struct PokemonBrain {
     let pokemonUrl = "https://pokeapi.co/api/v2/pokemon?limit=20"
     let movesUrl = "https://pokeapi.co/api/v2/move?limit=20"
     let itemsUrl = "https://pokeapi.co/api/v2/item?limit=20"
-    typealias Response<T> = (_ result: AFResult<T>) -> Void
+    
     func fetchPokemonList(url: String?, completion: @escaping (PokemonListModel) -> Void,completeWithError: @escaping (String) -> Void){
         let myGroup = DispatchGroup()
         AF.request(url ?? pokemonUrl).validate().responseDecodable(of: PokemonListModel.self) { response in
@@ -39,6 +39,12 @@ struct PokemonBrain {
                                     statsWithIndex.append(Stats(index:index,base_stat: stat.base_stat, effort: stat.effort, stat: stat.stat))
                                 }
                                 list.results[index].stats = statsWithIndex;
+                            }
+                            if let abilities = pokemon.abilities{
+                                list.results[index].abilities = abilities;
+                            }
+                            if let species = pokemon.species{
+                                list.results[index].species = species;
                             }
                         case .failure(let error):
                             completeWithError(error.localizedDescription);
@@ -157,6 +163,28 @@ struct PokemonBrain {
             }
             myGroup.notify(queue: .main){
                 completion(.success(copy));
+            }
+        }
+    }
+    func getSpecies(url:String) -> Future<FullSpecies,Error>{
+        return performRequest(url: url);
+    }
+    
+    func getAbilities(abilities:[Ability]?) -> Future<[FullAbility],Error>{
+        return Future { completion in
+            var arr = [FullAbility]();
+            let group = DispatchGroup();
+            if let abilities = abilities{
+                abilities.forEach { ability in
+                    group.enter();
+                    performRequest(url: ability.ability.url).execute { (result: FullAbility)  in
+                        arr.append(result);
+                        group.leave();
+                    }
+                }
+                group.notify(queue: .main){
+                    completion(.success(arr));
+                }
             }
         }
     }

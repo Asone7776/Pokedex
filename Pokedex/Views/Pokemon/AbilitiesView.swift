@@ -8,8 +8,12 @@
 import UIKit
 
 class AbilitiesView: UIView {
-    
-    let label:UILabel = {
+    var selectedColor:UIColor?{
+        didSet{
+            label.textColor = selectedColor;
+        }
+    };
+    lazy var label:UILabel = {
         let label = UILabel();
         label.stylePokemonLabel();
         label.text = "Abilities";
@@ -43,18 +47,33 @@ class AbilitiesView: UIView {
 extension AbilitiesView {
     func layout() {
         addSubview(label);
-        stackView.addArrangedSubview(AbilityView(title: "Torrents", text: "Powers up Water-tpe moves when the Pokémon is in trouble."));
-        stackView.addArrangedSubview(Separator());
-        stackView.addArrangedSubview(AbilityView(title: "Rain dish", text: "The Pokémon gradually regains HP in rain."))
         addSubview(stackView);
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: centerXAnchor),
             label.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 2),
-            
+    
             stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
             stackView.topAnchor.constraint(equalToSystemSpacingBelow: label.bottomAnchor, multiplier: 1),
             trailingAnchor.constraint(equalToSystemSpacingAfter: stackView.trailingAnchor, multiplier: 2),
             bottomAnchor.constraint(equalToSystemSpacingBelow: stackView.bottomAnchor, multiplier: 1)
         ])
+    }
+    func configureAbilities(abilities:[FullAbility]?){
+        if let abilities = abilities{
+            for (index,ability) in abilities.enumerated(){
+                var text = "";
+                guard let englishFlavor = ability.flavor_text_entries.filter({$0.language.name == "en"}).first else{
+                    if let txt = ability.flavor_text_entries.first{
+                        text = txt.flavor_text.replace(string: "\n", replacement: " ");
+                    }
+                    return;
+                }
+                text = englishFlavor.flavor_text.replace(string: "\n", replacement: " ");
+                stackView.addArrangedSubview(AbilityView(title: ability.name.capitalized, text: text, selectedColor: selectedColor))
+                if index + 1 < abilities.count{
+                    stackView.addArrangedSubview(Separator());
+                }
+            }
+        }
     }
 }

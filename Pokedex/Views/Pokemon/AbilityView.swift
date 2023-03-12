@@ -26,11 +26,14 @@ class AbilityView: UIView {
         return text;
     }();
     
-    init(title:String,text:String) {
+    init(title:String,text:String,selectedColor:UIColor?) {
         super.init(frame: .zero);
         label.text = title;
         textView.text = text;
         layout();
+        if let selectedColor = selectedColor{
+            label.textColor = selectedColor;
+        }
     }
     
     required init?(coder: NSCoder) {

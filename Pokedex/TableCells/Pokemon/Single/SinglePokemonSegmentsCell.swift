@@ -12,6 +12,9 @@ class SinglePokemonSegmentsCell: UITableViewCell {
     
     static let identifier = "abilitiesCell";
     let pokemonItems = SinglePokemonItems();
+    var characteristicsView = PokemonCharacteristicsView();
+    var abilitiesView = AbilitiesView();
+    var spritesView = SpritesView();
     
     let stackView:UIStackView = {
         let stack = UIStackView();
@@ -22,13 +25,10 @@ class SinglePokemonSegmentsCell: UITableViewCell {
         return stack;
     }();
     
-    let navigationSegmentedControl = BetterSegmentedControl(
+    var navigationSegmentedControl = BetterSegmentedControl(
         frame: CGRect(x: 0, y: 0, width: UIView.noIntrinsicMetric, height: 30.0),
-        segments: LabelSegment.segments(withTitles: ["STATS", "MOVES"],
-                                        normalTextColor: UIColor(red: 0.33, green: 0.62, blue: 0.87, alpha: 1.00),
-                                        selectedTextColor: .white),
+        segments: [],
         options:[.backgroundColor(.clear),
-                 .indicatorViewBackgroundColor(UIColor(red: 0.33, green: 0.62, blue: 0.87, alpha: 1.00)),
                  .cornerRadius(15.0),
                  .animationSpringDamping(1.0)
         ])
@@ -54,9 +54,9 @@ extension SinglePokemonSegmentsCell{
         addSubview(navigationSegmentedControl);
     }
     private func layout(){
-        stackView.addArrangedSubview(PokemonCharacteristicsView());
-        stackView.addArrangedSubview(AbilitiesView());
-        stackView.addArrangedSubview(SpritesView());
+        stackView.addArrangedSubview(characteristicsView);
+        stackView.addArrangedSubview(abilitiesView);
+        stackView.addArrangedSubview(spritesView);
         addSubview(stackView);
         addSubview(pokemonItems);
         NSLayoutConstraint.activate([
@@ -74,6 +74,18 @@ extension SinglePokemonSegmentsCell{
             trailingAnchor.constraint(equalTo: pokemonItems.trailingAnchor),
             bottomAnchor.constraint(equalTo: pokemonItems.bottomAnchor)
         ])
+    }
+    func configure(selectedColor:UIColor?,stats:[Stats]?,sprites:Sprites?){
+        navigationSegmentedControl.indicatorViewBackgroundColor = selectedColor
+        navigationSegmentedControl.segments = LabelSegment.segments(withTitles: ["STATS", "MOVES"],
+                                                                    normalTextColor: selectedColor,
+                                                                    selectedTextColor: .white);
+        abilitiesView.selectedColor = selectedColor;
+        characteristicsView.configure(selectedColor: selectedColor, stats: stats);
+        spritesView.configureSprites(selectedColor: selectedColor, sprites: sprites);
+    }
+    func configureAbilites(abilities:[FullAbility]?){
+        abilitiesView.configureAbilities(abilities: abilities);
     }
 }
 // MARK: - Action handlers

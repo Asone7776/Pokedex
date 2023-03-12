@@ -61,6 +61,8 @@ struct SingleAbility:Decodable{
     let url: String
 }
 
+
+
 struct Stats:Decodable{
     var index:Int?
     let base_stat:Int
@@ -76,12 +78,45 @@ struct Stat:Decodable{
     var capitalizedName: String {
         name.capitalized
     }
+    func getShortCut() -> String{
+        switch name{
+        case "speed":
+            return "SPD";
+        case "special-defense":
+            return "SDEF";
+        case "special-attack":
+            return "SATK";
+        case "defense":
+            return "DEF";
+        case "attack":
+            return "ATK";
+        case "hp":
+            return "HP";
+        default:return "";
+        }
+    }
 }
 
 struct Species: Decodable{
-    let url:String?
-    let flavor_text_entries: [FlavorTextEntries]?
+    let url:String
 }
 struct FlavorTextEntries:Decodable{
     let flavor_text: String
+    let language:Language
+}
+struct Color: Decodable{
+    let name: String
+}
+struct FullSpecies: Decodable{
+    let color: Color
+    let flavor_text_entries: [FlavorTextEntries]
+}
+
+struct Language:Decodable{
+    let name: String
+}
+
+struct FullAbility: Decodable{
+    let name: String
+    let flavor_text_entries: [FlavorTextEntries]
 }

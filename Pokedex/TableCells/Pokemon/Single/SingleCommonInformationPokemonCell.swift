@@ -39,19 +39,17 @@ class SingleCommonInformationPokemonCell: UITableViewCell {
         return imageView;
     }();
     
-    let text:UITextView = {
-        let textView = UITextView();
-        textView.text = "Squirtle’s shell is not merely used for protection.The shell’s rounded shape and the grooves on its surface help minimize resistance in water, enabling this pokemon to swim at high speed.";
+    let pokemonText:UILabel = {
+        let textView = UILabel();
         textView.font = UIFont(name: "Avenir", size: 15);
+        textView.numberOfLines = 0;
+        textView.lineBreakMode = .byWordWrapping;
         textView.textAlignment = .center;
-        textView.isEditable = false;
-        textView.isScrollEnabled = false;
         return textView;
     }();
     
-    init(style: UITableViewCell.CellStyle, reuseIdentifier: String?,title:String?,types: [Types]?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier);
-        configure(title: title,types: types);
         backgroundColor = .systemBackground;
         layout();
     }
@@ -63,10 +61,9 @@ class SingleCommonInformationPokemonCell: UITableViewCell {
 
 extension SingleCommonInformationPokemonCell {
     func layout() {
- 
         stackView.addArrangedSubview(label);
         stackView.addArrangedSubview(typesStack);
-        stackView.addArrangedSubview(text);
+        stackView.addArrangedSubview(pokemonText);
         addSubview(stackView);
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
@@ -83,6 +80,17 @@ extension SingleCommonInformationPokemonCell {
             types.forEach { type in
                 typesStack.addArrangedSubview(TypeView(typeName: "\(type.type.name)-type"));
             }
+        }
+    }
+    func configureText(species:FullSpecies?){
+        if let species = species {
+            guard let englishFlavor = species.flavor_text_entries.filter({$0.language.name == "en"}).first else{
+                if let specieText = species.flavor_text_entries.first{
+                    pokemonText.text = specieText.flavor_text.replace(string: "\n", replacement: " ");
+                }
+                return;
+            }
+            pokemonText.text = englishFlavor.flavor_text.replace(string: "\n", replacement: " ");
         }
     }
 }

@@ -46,6 +46,9 @@ struct PokemonBrain {
                             if let species = pokemon.species{
                                 list.results[index].species = species;
                             }
+                            if let moves = pokemon.moves{
+                                list.results[index].moves = moves;
+                            }
                         case .failure(let error):
                             completeWithError(error.localizedDescription);
                         }

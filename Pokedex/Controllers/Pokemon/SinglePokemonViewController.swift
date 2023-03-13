@@ -25,7 +25,7 @@ class SinglePokemonViewController: UIViewController {
             if let pokemon = singlePokemon{
                 prepareSelectedColor(types: pokemon.types);
                 self.commonCell.configure(title: self.singlePokemon?.capitalizedName, types: self.singlePokemon?.types);
-                self.segmentCell.configure(selectedColor: selectedColor,stats: pokemon.stats,sprites:singlePokemon?.sprites);
+                self.segmentCell.configure(selectedColor: selectedColor,stats: pokemon.stats,sprites:singlePokemon?.sprites,moves: singlePokemon?.moves);
                 if let species = pokemon.species,let abilities = pokemon.abilities{
                     getData(speciesUrl: species.url,abilities:abilities);
                 }

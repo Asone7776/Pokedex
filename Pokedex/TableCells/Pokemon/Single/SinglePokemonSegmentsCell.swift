@@ -75,7 +75,7 @@ extension SinglePokemonSegmentsCell{
             bottomAnchor.constraint(equalTo: pokemonItems.bottomAnchor)
         ])
     }
-    func configure(selectedColor:UIColor?,stats:[Stats]?,sprites:Sprites?){
+    func configure(selectedColor:UIColor?,stats:[Stats]?,sprites:Sprites?,moves:[PokemonMove]?){
         navigationSegmentedControl.indicatorViewBackgroundColor = selectedColor
         navigationSegmentedControl.segments = LabelSegment.segments(withTitles: ["STATS", "MOVES"],
                                                                     normalTextColor: selectedColor,
@@ -83,6 +83,9 @@ extension SinglePokemonSegmentsCell{
         abilitiesView.selectedColor = selectedColor;
         characteristicsView.configure(selectedColor: selectedColor, stats: stats);
         spritesView.configureSprites(selectedColor: selectedColor, sprites: sprites);
+        if let moves = moves{
+            pokemonItems.items = moves;
+        }
     }
     func configureAbilites(abilities:[FullAbility]?){
         abilitiesView.configureAbilities(abilities: abilities);

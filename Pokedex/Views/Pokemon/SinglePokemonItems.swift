@@ -8,6 +8,7 @@
 import UIKit
 
 class SinglePokemonItems: UIView {
+    var items = [PokemonMove]();
     lazy var table: UITableView = {
         let table = UITableView();
         table.dataSource = self;
@@ -17,6 +18,7 @@ class SinglePokemonItems: UIView {
     }();
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setup();
         style()
         layout()
     }
@@ -27,6 +29,10 @@ class SinglePokemonItems: UIView {
 }
 
 extension SinglePokemonItems {
+    func setup(){
+        table.register(SinglePokemonCell.self, forCellReuseIdentifier: SinglePokemonCell.identifier);
+        table.rowHeight = SinglePokemonCell.cellHeight;
+    }
     func style() {
         isHidden = true;
         translatesAutoresizingMaskIntoConstraints = false
@@ -41,17 +47,26 @@ extension SinglePokemonItems {
             bottomAnchor.constraint(equalToSystemSpacingBelow: table.bottomAnchor, multiplier: 1)
         ]);
     }
+    func reload(){
+        table.reloadData();
+    }
 }
 extension SinglePokemonItems: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 15;
+        return items.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell();
-        var configuration = cell.defaultContentConfiguration();
-        configuration.text = "Text-\(indexPath.row)";
-        cell.contentConfiguration = configuration;
+        let cell = tableView.dequeueReusableCell(withIdentifier: SinglePokemonCell.identifier) as! SinglePokemonCell;
+        let row = indexPath.row;
+        let item = items[row];
+        cell.configure(name: item.move.name, level: prepareLevel(groups: item.version_group_details, index: row));
         return cell;
+    }
+    private func prepareLevel(groups: [VersionGroup],index: Int ) -> String{
+        guard let firstGroup = groups.first else {
+            return "Level \(index)";
+        }
+        return "Level \(firstGroup.level_learned_at)";
     }
 }

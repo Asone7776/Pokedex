@@ -19,6 +19,7 @@ struct Pokemon: Decodable{
     var stats: [Stats]?
     var abilities: [Ability]?
     var species: Species?
+    var moves: [PokemonMove]?
 }
 
 struct PokemonListModel: Decodable{
@@ -119,4 +120,14 @@ struct Language:Decodable{
 struct FullAbility: Decodable{
     let name: String
     let flavor_text_entries: [FlavorTextEntries]
+}
+struct PokemonMove: Decodable{
+    let move: SingleMove
+    let version_group_details: [VersionGroup]
+}
+struct SingleMove: Decodable{
+    let name: String
+}
+struct VersionGroup:Decodable{
+    let level_learned_at: Int
 }
